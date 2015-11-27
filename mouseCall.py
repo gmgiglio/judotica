@@ -143,3 +143,7 @@ def pos_objeto(color):
         cv2.circle(img, (x, y), 2, (255, 255, 255), 10)             
     return vector
 
+
+def centro():
+    dimenciones =  capture.read()[1].shape[:2]
+    return [dimenciones[0]/2 , dimenciones[1]/2]

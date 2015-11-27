@@ -36,4 +36,21 @@ def print_dir():
         print direccion(color_grande,color_chico)
 
 iniciar()
-print_dir()
+
+import tcp_client_robot_1_2015 as tcp
+
+tcp.iniciar()
+print '1'
+print centro()
+
+def avanzar(num):
+    for i in range(num):
+        tcp.enviarMensaje('w')
+def retroceder(num):
+    for i in range(num):
+        tcp.enviarMensaje('s')
+
+def derecha(num):
+    for i in range(num):
+        tcp.enviarMensaje('d')
+
