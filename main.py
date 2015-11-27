@@ -23,7 +23,7 @@ from mouseCall import *
 def direccion(color_grande,color_chico): 
     vec_grande = pos_objeto(color_grande)
     vec_chico = pos_objeto(color_chico)
-    return [vec_chico[0] - vec_grande[0], vec_chico[1] - vec_grande[1]]
+    return [float(vec_chico[0]) - float(vec_grande[0]), float(vec_chico[1]) - float(vec_grande[1])]
 
 
 def print_dir():
