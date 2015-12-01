@@ -57,6 +57,8 @@ def pos_inicial():
             break
         if cierra:
             vector = [x, y]
+            global lastImage
+            lastImage = capture.read()
             capture.release()
             break
 
@@ -66,8 +68,8 @@ def pos_inicial():
 
 
 def color_pos(vec):
-    global hsv_img
-    return hsv_img[vec[0],vec[1],0]
+    global lastImage
+    return lastImage[1][vec[1]][vec[0]]
 
 def pos_objeto(color):
     global lower
@@ -108,5 +110,5 @@ def centro():
     return [dimenciones[0]/2 , dimenciones[1]/2]
 
 iniciar()
-pos = pos_inicial()
-print pos
+color = color_pos(pos_inicial())
+print color
