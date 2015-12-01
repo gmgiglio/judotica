@@ -2,23 +2,7 @@ import mouseCall
 import cv2
 from mouseCall import *
 
-#pos_arco_propio = pos_inicial()
 
-#print 'Posicion de su arco: '+str(pos_arco_propio) 
-
-#pos_arco_rival = pos_inicial()
-
-#print 'Posicion del arco rival: '+str(pos_arco_rival)
-
-#vec = pos_inicial()
-#color = color_pos(vec)
-#iniciar()
-#while True:
- #   vec = pos_objeto(color)
-  #  print vec
-   # if cv2.waitKey(10) == 27:
-    #    capture.release()
-     #   break
 
 def direccion(color_grande,color_chico): 
     vec_grande = pos_objeto(color_grande)
@@ -37,6 +21,8 @@ def print_dir():
 
 iniciar()
 
+print_dir()
+
 import tcp_client_robot_1_2015 as tcp
 
 tcp.iniciar()
@@ -53,4 +39,5 @@ def retroceder(num):
 def derecha(num):
     for i in range(num):
         tcp.enviarMensaje('d')
+
 
