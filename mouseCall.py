@@ -58,8 +58,7 @@ def pos_inicial():
         if cierra:
             vector = [x, y]
             global lastImage
-            lastImage = capture.read()
-            capture.release()
+            _, lastImage = capture.read()
             break
 
     cv2.destroyAllWindows()
@@ -69,15 +68,17 @@ def pos_inicial():
 
 def color_pos(vec):
     global lastImage
-    return lastImage[1][vec[1]][vec[0]]
+    lastImage = cv2.cvtColor(lastImage, cv2.COLOR_BGR2HSV)
+    return lastImage [vec[1]][vec[0]]
+
+error = np.array([15,0,0],np.uint8);
 
 def pos_objeto(color):
     global lower
     global upper
-    global error
-    
-    lower[0] = color
-    upper[0] = color    
+
+    lower = color
+    upper = color
 
     lower = cv2.subtract(lower,error)
     upper = cv2.add(upper,error)
@@ -86,7 +87,9 @@ def pos_objeto(color):
     Title_original = "Original Image"
 
     
-    _, img = capture.read()            
+    _, img = capture.read()
+
+    img = cv2.blur(img,(10,10))
 
     hsv_img = cv2.cvtColor(img, cv2.COLOR_BGR2HSV) 
 
@@ -96,12 +99,12 @@ def pos_objeto(color):
                 
     area = moments['m00']
 
+    vector = None
     if(area > 1000):
-                   
         x = (np.uint32)(moments['m10']/area)
         y = (np.uint32)(moments['m01']/area)
         vector = [x, y]
-        cv2.circle(img, (x, y), 2, (255, 255, 255), 10)             
+
     return vector
 
 
@@ -110,5 +113,7 @@ def centro():
     return [dimenciones[0]/2 , dimenciones[1]/2]
 
 iniciar()
-color = color_pos(pos_inicial())
-print color
+pos1 = pos_inicial()
+print pos1
+pos2 = pos_inicial()
+print pos2
