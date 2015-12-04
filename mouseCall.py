@@ -19,16 +19,16 @@ def iniciar():
         
 cierra = False
 def _mouseEvent(event, _x, _y, flags, param):
-    global hsv_img
-    global lower
-    global upper
-    global error
-    global x
-    global y
-    x = _x
-    y= _y
-
     if event == cv2.EVENT_LBUTTONDOWN:
+        global hsv_img
+        global lower
+        global upper
+        global error
+        global x
+        global y
+        x = _x
+        y= _y
+
         global cierra
         cierra = True
 

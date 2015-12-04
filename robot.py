@@ -97,3 +97,6 @@ class Jigoro(Robot):
             angulo2 = np.arctan2(dir[0],dir[1])
             giros.append((angulo2 - angulo1)/i)
         razonGiro = np.mean(giros)
+
+
+

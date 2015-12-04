@@ -9,7 +9,9 @@ def _mouseEvent(event, x, y, flags, param):
 
     if event == cv2.EVENT_LBUTTONDOWN:
         lower[0] = hsv_img[y,x,0]
-        upper[0] = hsv_img[y,x,0]     
+        upper[0] = hsv_img[y,x,0]
+
+        print "lower" ,lower[0]
 
         lower = cv2.subtract(lower,error)
         upper = cv2.add(upper,error) 
@@ -36,9 +38,6 @@ capture = cv2.VideoCapture(0)
 if capture.isOpened():
     capture.open(0)      
 
-xprom = 0
-yprom = 0
-par = 0.9
 while True:
     _, img = capture.read()            
 
@@ -58,10 +57,7 @@ while True:
                    
         x = (np.uint32)(moments['m10']/area)
         y = (np.uint32)(moments['m01']/area)
-        xprom = par*xprom + (1-par)*x
-        yprom = par*yprom + (1-par)*y
-        print 'x: ' + str(xprom) + ' y: ' + str(yprom)                       
-        print 'x: ' + str(x) + ' y: ' + str(y) + ' area: ' + str(area)
+
         cv2.circle(img, (x, y), 2, (255, 255, 255), 10)
 
         img_aux = cv2.bitwise_and(img,img, mask= thres)              
