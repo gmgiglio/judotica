@@ -8,11 +8,12 @@ def subImagen(img, pos, margen):
 
     xMin = max(0 , pos[0] - margen)
     xMax = min(img.shape[1], pos[0] + margen)
-    yMin = max(0 , pos[1] - margenLocal)
+    yMin = max(0 , pos[1] - margen)
     yMax = min(img.shape[0], pos[1] + margen)
 
-    return img.copy()[yMin: yMax, xMin: xMax], (xMin,yMin)
-
+    ret =  img.copy()[yMin: yMax, xMin: xMax]
+    print  img.shape , ret.shape
+    return ret , (xMin,yMin)
 
 objetos = []
 
@@ -78,7 +79,7 @@ for i in range(10,-1,-1):
     capture = cv2.VideoCapture(i)
     if capture.isOpened():
         capture.open(i)
-        print i
+        print 'camara:', i
         break
 
 _, img = capture.read()
@@ -108,7 +109,7 @@ while True:
         upper = cv2.add(upper,error)
 
 
-        ml = max(50 ,  min(margenLocal , int(obj.area/10000)))
+        ml = max(80, min(margenLocal , int(obj.area/10000)))
 
 
         hsv_imgParcial , pos = subImagen(hsv_img,obj.pos,ml)
