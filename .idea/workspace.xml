@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="633f0ed6-86b2-4d23-b986-96eb8c20499a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ciclo2Pelota.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ciclo2Penal.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/ciclo2subimagen.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/internet2.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/captura_parallel.py" afterPath="$PROJECT_DIR$/captura_parallel.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/carga_a_jigoro/carga_a_jigoro.ino" afterPath="$PROJECT_DIR$/carga_a_jigoro/carga_a_jigoro.ino" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ciclo.py" afterPath="$PROJECT_DIR$/ciclo.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ciclo2.py" afterPath="$PROJECT_DIR$/ciclo2.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ciclo3.py" afterPath="$PROJECT_DIR$/ciclo3.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prueba.py" afterPath="$PROJECT_DIR$/prueba.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/prueba_captura_parallel.py" afterPath="$PROJECT_DIR$/prueba_captura_parallel.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trakingInternet.py" afterPath="$PROJECT_DIR$/trakingInternet.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ciclo2subimagen.py" afterPath="$PROJECT_DIR$/ciclo2subimagen.py" />
     </list>
     <ignored path="judotica.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -60,28 +48,8 @@
       <file leaf-file-name="prueba.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/prueba.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="195">
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195">
               <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tcp_client_robot_1_2015.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tcp_client_robot_1_2015.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="720">
-              <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tcp_client_robot_1_2015.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../Talleres/taller 2/tcp_client_robot_1_2015.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="720">
-              <caret line="33" column="22" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -90,8 +58,18 @@
       <file leaf-file-name="ciclo2subimagen.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ciclo2subimagen.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.079225354" vertical-offset="0" max-vertical-offset="2835">
-              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.31690142" vertical-offset="1815" max-vertical-offset="2790">
+              <caret line="136" column="94" selection-start-line="136" selection-start-column="94" selection-end-line="136" selection-end-column="94" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="trakingInternet.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trakingInternet.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="795">
+              <caret line="35" column="8" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="54" />
               <folding />
             </state>
           </provider>
@@ -224,24 +202,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.ciclo2subimagen">
-    <configuration default="false" name="internet2" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="judotica" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/internet2.py" />
-      <option name="PARAMETERS" value="" />
-      <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PythonRunner" />
-      <method />
-    </configuration>
     <configuration default="false" name="ciclo2subimagen" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -313,6 +273,24 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="judotica" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../../../Talleres/taller 2/tcp_client_robot_1_2015.py" />
+      <option name="PARAMETERS" value="" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="trakingInternet" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="judotica" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/trakingInternet.py" />
       <option name="PARAMETERS" value="" />
       <RunnerSettings RunnerId="PythonRunner" />
       <ConfigurationWrapper RunnerId="PythonRunner" />
@@ -440,19 +418,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.internet2" />
-      <item index="1" class="java.lang.String" itemvalue="Python.ciclo2subimagen" />
-      <item index="2" class="java.lang.String" itemvalue="Python.ciclo2" />
-      <item index="3" class="java.lang.String" itemvalue="Python.prueba" />
-      <item index="4" class="java.lang.String" itemvalue="Python.tcp_client_robot_1_2015" />
+      <item index="0" class="java.lang.String" itemvalue="Python.ciclo2subimagen" />
+      <item index="1" class="java.lang.String" itemvalue="Python.ciclo2" />
+      <item index="2" class="java.lang.String" itemvalue="Python.prueba" />
+      <item index="3" class="java.lang.String" itemvalue="Python.tcp_client_robot_1_2015" />
+      <item index="4" class="java.lang.String" itemvalue="Python.trakingInternet" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python.ciclo2subimagen" />
-        <item index="1" class="java.lang.String" itemvalue="Python.tcp_client_robot_1_2015" />
-        <item index="2" class="java.lang.String" itemvalue="Python.ciclo2" />
-        <item index="3" class="java.lang.String" itemvalue="Python.prueba" />
-        <item index="4" class="java.lang.String" itemvalue="Python.internet2" />
+        <item index="1" class="java.lang.String" itemvalue="Python.trakingInternet" />
+        <item index="2" class="java.lang.String" itemvalue="Python.tcp_client_robot_1_2015" />
+        <item index="3" class="java.lang.String" itemvalue="Python.ciclo2" />
+        <item index="4" class="java.lang.String" itemvalue="Python.prueba" />
       </list>
     </recent_temporary>
   </component>
@@ -538,11 +516,6 @@
           <url>file://$PROJECT_DIR$/ciclo2.py</url>
           <line>9</line>
           <option name="timeStamp" value="37" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="python-line">
-          <url>file://$PROJECT_DIR$/ciclo2subimagen.py</url>
-          <line>108</line>
-          <option name="timeStamp" value="40" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -801,13 +774,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/trakingInternet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="810">
-          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ciclo3.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="5.423077" vertical-offset="2016" max-vertical-offset="2685">
@@ -882,22 +848,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/prueba.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195">
-          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tcp_client_robot_1_2015.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="720">
-          <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../../Talleres/taller 2/tcp_client_robot_1_2015.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="720">
@@ -914,10 +864,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tcp_client_robot_1_2015.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7130282" vertical-offset="0" max-vertical-offset="720">
+          <caret line="27" column="9" selection-start-line="27" selection-start-column="9" selection-end-line="27" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/prueba.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="195">
+          <caret line="5" column="12" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trakingInternet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="795">
+          <caret line="35" column="8" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ciclo2subimagen.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.079225354" vertical-offset="0" max-vertical-offset="2835">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.31690142" vertical-offset="1815" max-vertical-offset="2790">
+          <caret line="136" column="94" selection-start-line="136" selection-start-column="94" selection-end-line="136" selection-end-column="94" />
           <folding />
         </state>
       </provider>

@@ -4,7 +4,14 @@ import tcp_client_robot_1_2015 as tcp
 import time
 
 
+def subImagen(img, pos, margen):
 
+    xMin = max(0 , pos[0] - margen)
+    xMax = min(img.shape[1], pos[0] + margen)
+    yMin = max(0 , pos[1] - margenLocal)
+    yMax = min(img.shape[0], pos[1] + margen)
+
+    return img.copy()[yMin: yMax, xMin: xMax], (xMin,yMin)
 
 
 objetos = []
@@ -26,11 +33,6 @@ def _mouseEvent(event, x, y, flags, param):
         global lower
         global upper
 
-        xMin = max(0 , x - margenLocal)
-        xMax = min(imgBlur.shape[1], x + margenLocal)
-        yMin = max(0 , y - margenLocal)
-        yMax = min(imgBlur.shape[0], y + margenLocal)
-
         col = hsv_img[y,x,0]
 
         lo = lower.copy()
@@ -42,7 +44,7 @@ def _mouseEvent(event, x, y, flags, param):
         lower = cv2.subtract(lower,error)
         upper = cv2.add(upper,error)
 
-        hsv_imgParcial = hsv_img.copy()[yMin: yMax, xMin: xMax]
+        hsv_imgParcial, _ = subImagen(hsv_img , (x,y) , margenLocal)
         thresChico = cv2.inRange(hsv_imgParcial, lower, upper)
         momentsChico = cv2.moments(thresChico, 0)
         areaChica = momentsChico['m00']
@@ -107,15 +109,11 @@ while True:
 
 
         ml = max(50 ,  min(margenLocal , int(obj.area/10000)))
-        print int(obj.area/10000)
 
-        xMin = max(0 , obj.pos[0] - ml)
-        xMax = min(imgBlur.shape[1], obj.pos[0] + ml)
-        yMin = max(0 , obj.pos[1] - ml)
-        yMax = min(imgBlur.shape[0], obj.pos[1] + ml)
 
-        hsv_imgParcial = hsv_img.copy()[yMin: yMax, xMin: xMax]
-        imgParcial = img.copy()[yMin: yMax, xMin: xMax]
+        hsv_imgParcial , pos = subImagen(hsv_img,obj.pos,ml)
+
+        imgParcial, _ = subImagen(img,obj.pos,ml)
 
         thresGrande = cv2.inRange(hsv_img, lower, upper)
         thresChico = cv2.inRange(hsv_imgParcial, lower, upper)
@@ -129,11 +127,16 @@ while True:
 
 
         if (areaChica > 10):
-            x2 = (np.uint32)(momentsChico['m10']/areaChica) + xMin
-            y2 = (np.uint32)(momentsChico['m01']/areaChica) + yMin
+            x2 = (np.uint32)(momentsChico['m10']/areaChica) + pos[0]
+            y2 = (np.uint32)(momentsChico['m01']/areaChica) + pos[1]
             img2 = cv2.bitwise_and(imgParcial,imgParcial, mask= thresChico)
 
+
             cv2.circle(img, (x2, y2), 2, (0,255,0) , 10)
+
+            cv2.rectangle(img, pos, (pos[0] + imgParcial.shape[1], pos[1] + imgParcial.shape[0]), 255, 2)
+
+
             cv2.imshow(Title_parcial, img2)
             obj.actualizar((x2,y2))
 
@@ -145,15 +148,9 @@ while True:
 
             cv2.circle(img, (x, y), 2, (255,0,0) , 10)
 
-
-
-
             img_aux = cv2.bitwise_and(imgBlur,imgBlur, mask= thresGrande)
 
             cv2.imshow(Title_color, img_aux)
-
-
-
 
 
 
