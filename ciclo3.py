@@ -15,7 +15,6 @@ class Robot:
 
 
     def direccion(self):
-
         return [int(self.objChico.pos[0]) - int(self.objGrande.pos[0]), int(self.objChico.pos[1]) - int(self.objGrande.pos[1])]
 
 
@@ -77,8 +76,10 @@ class Objeto:
 
 def _mouseEvent(event, x, y, flags, param):
     global jigoro
+    global hsv_img
 
     if event == cv2.EVENT_LBUTTONDOWN:
+
             objetos.append(Objeto(hsv_img[y,x,0]))
 
             if len(objetos) == 2:
@@ -111,6 +112,11 @@ if capture.isOpened():
 
 
 def ciclo():
+    global img
+    global hsv_img
+    global lower
+    global upper
+
     _, img = capture.read()
 
     cv2.imshow(Title_original, img)

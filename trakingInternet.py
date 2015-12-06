@@ -6,7 +6,7 @@ import numpy as np
 import cv2
 
 def run_main():
-    cap = cv2.VideoCapture('upabove.mp4')
+    cap = cv2.VideoCapture(0)
 
     # Read the first frame of the video
     ret, frame = cap.read()
@@ -25,8 +25,8 @@ def run_main():
     term_crit = (cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 80, 1)
 
     while True:
-        ret, frame = cap.read()
 
+        ret, frame = cap.read()
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
         dst = cv2.calcBackProject([hsv], [0], roi_hist, [0,180], 1)
 

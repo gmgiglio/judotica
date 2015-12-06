@@ -15,8 +15,8 @@ void setup(){
 
 void loop(){
   instruc=0; 
-  analogWrite(enD, 100);
-  analogWrite(enI, 100); 
+  analogWrite(enD, 90);
+  analogWrite(enI, 105); 
   if (Serial.available()>0) {         
     instruc = Serial.read();
   }

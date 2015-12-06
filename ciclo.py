@@ -2,34 +2,6 @@ import numpy as np
 import cv2
 from robot2 import *
 
-"""
-def _mouseEventElegirGrandeJigoro(event, x, y, flags, param):
-    global hsv_img
-    global lower
-    global upper
-    global error
-    global pos
-
-    if event == cv2.EVENT_LBUTTONDOWN:
-        lower[0] = hsv_img[y,x,0]
-        upper[0] = hsv_img[y,x,0]     
-
-        lower = cv2.subtract(lower,error)
-        upper = cv2.add(upper,error) 
-
-        print lower, upper
-
-    pos = [x,y]
-
-    cv2.setMouseCallback(tituloVentana,_mouseEventElegirChicoJigoro)
-
-
-def  _mouseEventElegirChicoJigoro(event, x, y, flags, param):
-    global jigoro
-    jigoro = Jigoro(pos, [x,y])
-
-"""
-
 
 def elegirPunto():
     apretado = False
@@ -57,7 +29,7 @@ hsv_img = 1
 
 lower= np.array([0,50,50],np.uint8)
 upper= np.array([5,255,255],np.uint8)
-error = np.array([15,0,0],np.uint8);
+error = np.array([15,0,0],np.uint8)
 
 tituloVentana = "Original Image"
 cv2.namedWindow( tituloVentana,  cv2.CV_WINDOW_AUTOSIZE )
@@ -89,6 +61,9 @@ cv2.destroyAllWindows()
  
 
 def centroMasa(self,color):
+        global lower
+        global upper
+
         lower = color
         upper = color
 

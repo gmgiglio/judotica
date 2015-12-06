@@ -35,26 +35,42 @@ class Jigoro(Robot):
     def avanzar(self, num):
         for i in range(num):
             tcp.enviarMensaje('s')
-        time.sleep(1)
+        time.sleep(2)
     def retroceder(num):
         for i in range(num):
             tcp.enviarMensaje('w')
-        time.sleep(1)
+        time.sleep(2)
 
     def girarDerecha(self, n):
         for i in range(n):
             tcp.enviarMensaje('d')
-        time.sleep(1)
+        time.sleep(2)
 
     def girarIzquierda(self, n):
         for i in range(n):
             tcp.enviarMensaje('a')
-        time.sleep(1)
+        time.sleep(2)
 
     def pos(self):
         return self.objGrande.pos
 
-
+    def calibrarGiro(self):
+        giros = []
+        for i in range(5):
+            dir = self.direccion()
+            angulo1 = np.arctan2(dir[0],dir[1])
+            self.girarIzquierda(i)
+            dir = self.direccion()
+            angulo2 = np.arctan2(dir[0],dir[1])
+            giros.append((angulo2 - angulo1)/i)
+        for i in range(5):
+            dir = self.direccion()
+            angulo1 = np.arctan2(dir[0],dir[1])
+            self.girarDerecha(i)
+            dir = self.direccion()
+            angulo2 = np.arctan2(dir[0],dir[1])
+            giros.append((angulo2 - angulo1)/i)
+        razonGiro = np.mean(giros)
 
     def girarAPunto(self,punto):
         dirAPunto = [int(punto[0]) - int(self.objGrande.pos[0]), int(punto[1]) - int(self.objGrande.pos[1])]
@@ -81,7 +97,7 @@ class Jigoro(Robot):
 
         elif self.modo == 2:
 
-            if np.abs(self.pos()[0] - punto[0]) > 40 and np.abs(self.pos()[1] - punto[1]) > 40:
+            if np.abs(self.pos()[0] - punto[0]) > 10 and np.abs(self.pos()[1] - punto[1]) > 10:
                 self.avanzar(8)
                 print 'avanzar'
                 self.modo = 1
@@ -134,7 +150,7 @@ hsv_img = 1
 
 lower= np.array([0,50,50],np.uint8)
 upper= np.array([5,255,255],np.uint8)
-error = np.array([15,0,0],np.uint8)
+error = np.array([15,0,0],np.uint8);
 
 
 Title_original = "Original Image"
@@ -146,10 +162,10 @@ cv2.namedWindow(Title_color)
 
 cv2.setMouseCallback(Title_original,_mouseEvent)
 
-capture = cv2.VideoCapture(1)
+capture = cv2.VideoCapture(0)
 
 if capture.isOpened():
-    capture.open(1)
+    capture.open(0)
 
 _, img = capture.read()
 
@@ -175,17 +191,17 @@ while True:
         lower = cv2.subtract(lower,error)
         upper = cv2.add(upper,error)
 
+        #imgParcial = hsv_img.copy()
+        #xMin = max(0 , obj.pos[0] - margenLocal)
+        #xMax = min(imgBlur.shape[1], obj.pos[0] + margenLocal)
+        #yMin = max(0 , obj.pos[1] - margenLocal)
+        #yMax = min(imgBlur.shape[0], obj.pos[1] + margenLocal)
 
-        xMin = max(0 , obj.pos[0] - margenLocal)
-        xMax = min(hsv_img.shape[1], obj.pos[0] + margenLocal)
-        yMin = max(0 , obj.pos[1] - margenLocal)
-        yMax = min(hsv_img.shape[0], obj.pos[1] + margenLocal)
+        #imgParcial = imgBlur.copy()[yMin: yMax, xMin: xMax]
 
-        imgParcialBlur = imgBlur.copy()[yMin: yMax, xMin: xMax]
-        hsv_imgParcial = hsv_img.copy()[yMin: yMax, xMin: xMax]
-
-        cv2.imshow(Title_parcial, hsv_imgParcial)
-        thresChico = cv2.inRange(hsv_imgParcial, lower, upper)
+        #cv2.imshow(Title_parcial, imgParcial)
+        thresGrande = cv2.inRange(hsv_img, lower, upper)
+        thresChico = cv2.inRange(hsv_img, lower, upper)
 
         moments = cv2.moments(thresChico, 0)
 
@@ -193,8 +209,8 @@ while True:
 
         if(area > 10):
 
-            x = (np.uint32)(moments['m10']/area) + xMin
-            y = (np.uint32)(moments['m01']/area) + yMin
+            x = (np.uint32)(moments['m10']/area) #+ xMin
+            y = (np.uint32)(moments['m01']/area) #+ yMin
 
 
             cv2.circle(img, (x, y), 2, obj.colDisplay, 10)
@@ -202,7 +218,7 @@ while True:
 
             obj.actualizar((x,y))
 
-            img_aux = cv2.bitwise_and(imgParcialBlur,imgParcialBlur, mask= thresChico)
+            img_aux = cv2.bitwise_and(imgBlur,imgBlur, mask= thresGrande)
 
             cv2.imshow(Title_color, img_aux)
 
@@ -214,8 +230,9 @@ while True:
     global arcoAmigo
 
     if len(objetos) >= 3:
-        jigoro.irAPunto(cen)
-
+        jigoro.avanzar(15)
+        jigoro.retroceder(5)
+        break
 
     if cv2.waitKey(10) == 27:
             capture.release()

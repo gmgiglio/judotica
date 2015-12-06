@@ -1,14 +1,16 @@
 import numpy as np
 import cv2
-from threading import Thread
+import threading as th
+import time
 
 
-class Captura(Thread):
+class Captura(th.Thread):
 
     def __init__(self,numCam):
-        Thread.__init__(self)
+        th.Thread.__init__(self)
         self.numCam = numCam
         self.abierta = False
+
 
     def iniciarCaptura(self):
 
@@ -16,17 +18,28 @@ class Captura(Thread):
 
         cv2.namedWindow(self.tituloVentana,  cv2.CV_WINDOW_AUTOSIZE )
 
+
         self.capture = cv2.VideoCapture(self.numCam)
 
         if self.capture.isOpened():
-            self.capture.open(0)
+            self.capture.open(self.numCam)
 
         self.abierta = True
+
+        _, self.img = self.capture.read()
+        self.imgLock = th.Lock()
+
         self.start()
 
     def run(self):
+
         while self.abierta:
+
             _, self.img = self.capture.read()
+            cv2.imshow(self.tituloVentana,self.img)
+
+
+
 
 
 
@@ -34,15 +47,13 @@ class Captura(Thread):
             self.abierta = False
 
 
+    errorColor = np.array([15,0,0],np.uint8)
     def centroMasa(self,color):
         lower = color
         upper = color
 
-        lower = cv2.subtract(lower,error)
-        upper = cv2.add(upper,error)
-
-        Title_tracker = "Color Tracker"
-        Title_original = "Original Image"
+        lower = cv2.subtract(lower,Captura.errorColor)
+        upper = cv2.add(upper,Captura.errorColor)
 
 
         img = cv2.blur(self.img,(10,10))
@@ -66,22 +77,23 @@ class Captura(Thread):
 
     def posClick(self):
 
-        x,y = 0,0
-        def _mouseEvent(self,event, _x, _y, flags, param):
+        params = [0,0]
+        def _mouseEvent(self,event, x, y, flags, param):
 
-            x = _x
-            y= _y
+            params[(x,y),True]
 
             if event == cv2.EVENT_LBUTTONDOWN:
-                self.cierra = True
+                cierra = True
+
 
         cv2.setMouseCallback(self.tituloVentana,_mouseEvent)
 
-        while True:
+        while not params[1]:
+            continue
 
-            cv2.imshow(self.tituloVentana, self.img)
 
-
+cap = Captura(0)
+cap.iniciarCaptura()
 
 
 """"
