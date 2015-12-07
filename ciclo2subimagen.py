@@ -12,49 +12,70 @@ def subImagen(img, pos, margen):
     yMax = min(img.shape[0], pos[1] + margen)
 
     ret =  img.copy()[yMin: yMax, xMin: xMax]
-    print  img.shape , ret.shape
     return ret , (xMin,yMin)
 
 objetos = []
+esquinasCancha = []
+objetosVisibles = []
 
 class Objeto:
+    def __init__(self,pos,colorDisplay = (255,255,255)):
+        self.colDisplay = colorDisplay
+        self.pos = pos
 
-    def __init__(self,color,area):
+class Movil(Objeto):
+    def __init__(self,color,area,colorDisplay = (255,255,255)):
         self.color = color
-        self.colDisplay = (255,255,255)
+        self.colDisplay = colorDisplay
         self.area = area
 
 
     def actualizar(self,pos):
         self.pos = pos
 
+
 def _mouseEvent(event, x, y, flags, param):
 
     if event == cv2.EVENT_LBUTTONDOWN:
-        global lower
-        global upper
+        if len(esquinasCancha) < 2:
+            global esquinasCancha
+            esq = Objeto((x,y),(0,255,255))
+            esquinasCancha.append(esq)
+            objetosVisibles.append(esq)
 
-        col = hsv_img[y,x,0]
+            if len(esquinasCancha) == 2:
+                for esq in esquinasCancha:
+                    objetosVisibles.remove(esq)
 
-        lo = lower.copy()
-        up = upper.copy()
 
-        lo[0] = col
-        up[0] = col
+        else:
 
-        lower = cv2.subtract(lower,error)
-        upper = cv2.add(upper,error)
+            global lower
+            global upper
 
-        hsv_imgParcial, _ = subImagen(hsv_img , (x,y) , margenLocal)
-        thresChico = cv2.inRange(hsv_imgParcial, lower, upper)
-        momentsChico = cv2.moments(thresChico, 0)
-        areaChica = momentsChico['m00']
+            margen = 5
+            col = cv2.mean(hsv_img[y - margen : y + margen, x - margen : x + margen])[0]
 
-        obj = Objeto(col, areaChica)
-        col = cv2.cvtColor(hsv_img, cv2.COLOR_HSV2BGR)[y,x]
-        obj.colDisplay = (col[0],col[1],col[2])
-        objetos.append(obj)
-        obj.actualizar((x,y))
+            lo = lower.copy()
+            up = upper.copy()
+
+            lo[0] = col
+            up[0] = col
+
+            lower = cv2.subtract(lower,error)
+            upper = cv2.add(upper,error)
+
+            hsv_imgParcial, _ = subImagen(hsv_img , (x,y) , margenLocal)
+            thresChico = cv2.inRange(hsv_imgParcial, lower, upper)
+            momentsChico = cv2.moments(thresChico, 0)
+            areaChica = momentsChico['m00']
+
+            mov = Movil(col, areaChica)
+            mov.colDisplay = (0,255,0)
+            objetos.append(mov)
+            objetosVisibles.append(mov)
+            mov.actualizar((x,y))
+
 
 
 
@@ -94,6 +115,8 @@ img_aux = 0
 
 imgParcial = 0
 while True:
+
+
     _, img = capture.read()
 
     imgBlur = cv2.blur(img,(10,10))
@@ -147,17 +170,19 @@ while True:
             y = (np.uint32)(momentsGrande['m01']/areaGrande)
 
 
-            cv2.circle(img, (x, y), 2, (255,0,0) , 10)
+            #cv2.circle(img, (x, y), 2, (255,0,0) , 10)
 
             img_aux = cv2.bitwise_and(imgBlur,imgBlur, mask= thresGrande)
+
 
             cv2.imshow(Title_color, img_aux)
 
 
+    for obj in objetosVisibles:
+        cv2.circle(img, obj.pos, 2, obj.colDisplay, 10)
 
-    cv2.circle(img, (cen[0],cen[1]), 2, (255,255,255), 10)
+    #cv2.circle(img, (cen[0],cen[1]), 2, (255,255,255), 10)
 
-    #cv2.imshow(Title_parcial, imgParcial)
     cv2.imshow(Title_original, img)
     cv2.imshow(Title_color, img_aux)
 
@@ -166,10 +191,6 @@ while True:
     if cv2.waitKey(10) == 27:
             capture.release()
             break
-
-
-
-
 
 cv2.destroyAllWindows()
 
