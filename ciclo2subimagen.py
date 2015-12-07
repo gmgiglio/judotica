@@ -11,7 +11,7 @@ def subImagen(img, pos, margen):
     yMin = max(0 , pos[1] - margen)
     yMax = min(img.shape[0], pos[1] + margen)
 
-    ret =  img.copy()[yMin: yMax, xMin: xMax]
+    ret =  img[yMin: yMax, xMin: xMax].copy()
     return ret , (xMin,yMin)
 
 objetos = []
@@ -89,10 +89,9 @@ error = np.array([5,0,0],np.uint8)
 
 Title_original = "Original Image"
 Title_parcial = "Parcial"
-Title_color = "Color"
+
 cv2.namedWindow( Title_original,  cv2.CV_WINDOW_AUTOSIZE )
 cv2.namedWindow(Title_parcial, cv2.CV_WINDOW_AUTOSIZE)
-cv2.namedWindow(Title_color)
 
 cv2.setMouseCallback(Title_original,_mouseEvent)
 
@@ -118,6 +117,8 @@ while True:
 
 
     _, img = capture.read()
+    if len(esquinasCancha) == 2:
+        img = img[esquinasCancha[0].pos[1] : esquinasCancha[1].pos[1] , esquinasCancha[0].pos[0] : esquinasCancha[1].pos[0]]
 
     imgBlur = cv2.blur(img,(10,10))
 
@@ -164,27 +165,13 @@ while True:
             cv2.imshow(Title_parcial, img2)
             obj.actualizar((x2,y2))
 
-        if(areaGrande > 10):
-
-            x = (np.uint32)(momentsGrande['m10']/areaGrande)
-            y = (np.uint32)(momentsGrande['m01']/areaGrande)
-
-
-            #cv2.circle(img, (x, y), 2, (255,0,0) , 10)
-
-            img_aux = cv2.bitwise_and(imgBlur,imgBlur, mask= thresGrande)
-
-
-            cv2.imshow(Title_color, img_aux)
 
 
     for obj in objetosVisibles:
         cv2.circle(img, obj.pos, 2, obj.colDisplay, 10)
 
-    #cv2.circle(img, (cen[0],cen[1]), 2, (255,255,255), 10)
 
     cv2.imshow(Title_original, img)
-    cv2.imshow(Title_color, img_aux)
 
 
 
