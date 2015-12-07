@@ -41,11 +41,12 @@ def _mouseEvent(event, x, y, flags, param):
             global esquinasCancha
             esq = Objeto((x,y),(0,255,255))
             esquinasCancha.append(esq)
+            objetos.append(esq)
             objetosVisibles.append(esq)
 
             if len(esquinasCancha) == 2:
                 for esq in esquinasCancha:
-                    objetosVisibles.remove(esq)
+                    if esq in esquinasCancha: objetosVisibles.remove(esq)
 
 
         else:
@@ -124,7 +125,7 @@ while True:
 
     hsv_img = cv2.cvtColor(imgBlur, cv2.COLOR_BGR2HSV)
 
-    for obj in objetos:
+    for obj in [obj for obj in objetos if isinstance(obj, Movil)]:
 
         lower[0] = obj.color
         upper[0] = obj.color
@@ -175,9 +176,16 @@ while True:
 
 
 
-    if cv2.waitKey(10) == 27:
-            capture.release()
-            break
+    key = cv2.waitKey(10)
+    if key == 27:
+        capture.release()
+        break
+    elif key == 122:
+        obj = objetos.pop()
+        for list in (esquinasCancha , objetosVisibles):
+            if obj in list: list.remove(obj)
+
+
 
 cv2.destroyAllWindows()
 
