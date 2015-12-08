@@ -74,7 +74,6 @@ def _mouseEvent(event, x, y, flags, param):
             mov = Movil(col, areaChica)
             mov.colDisplay = (0,255,0)
             objetos.append(mov)
-            objetosVisibles.append(mov)
             mov.actualizar((x,y))
 
 
